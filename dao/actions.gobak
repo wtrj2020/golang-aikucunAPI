@@ -1,0 +1,79 @@
+package dao
+
+import "appApi/models"
+
+func ActList(jsonInfo models.ActPost) []models.ActListResult {
+
+	//var result []models.ActListResult
+	//DB.Table("fc_actions_items").Where("fc_actions_items.act_status=? and fc_actions_items.data_flag=1", jsonInfo.ActStatus).
+	//	Select("*").
+	//	Joins("left join fc_actions_items_goods on fc_actions_items_goods.items_id=fc_actions_items.id").
+	//	Joins("RIGHT join fc_goods on fc_goods.goods_id=fc_actions_items_goods.goods_id").
+	//	Scan(&result)
+	//return result
+
+	var result []models.ActListResult
+	//offset := jsonInfo.PageSize * (jsonInfo.PageNum - 1)
+	//DB.Table("fc_actions_items_goods").Where("fc_actions_items_goods.data_flag=1 and fc_actions_items_goods.shop_id=?", jsonInfo.ShopId).
+	//	//Limit(jsonInfo.PageSize).Offset(offset).
+	//	Select("*").
+	//	Joins("left join fc_goods on fc_actions_items_goods.goods_id=fc_goods.goods_id").
+	//	Joins("left join fc_actions_items on fc_actions_items.id=fc_actions_items_goods.items_id").
+	//	Scan(&result)
+
+	//SELECT
+	//*
+	//	FROM
+	//fc_goods
+	//WHERE EXISTS
+	//(
+	//	SELECT
+	//*
+	//FROM
+	//fc_actions_items_goods
+	//WHERE
+	//fc_actions_items_goods.shop_id = fc_goods.shop_id
+	//)
+	//
+	DB.Table("fc_actions_items_goods").Where("fc_actions_items_goods.data_flag=1")
+	return result
+
+}
+
+//SELECT
+//*
+//FROM
+//fc_goods
+//WHERE EXISTS
+//(
+//SELECT
+//3454645645
+//FROM
+//fc_actions_items_goods
+//WHERE
+//fc_actions_items_goods.shop_id = fc_goods.shop_id EXISTS(
+//SELECT
+//3454645645
+//FROM
+//fc_actions_items
+//WHERE
+//fc_actions_items_goods.items_id = fc_actions_items.id
+//)
+//)
+
+//
+//SELECT
+//*
+//FROM
+//fc_goods,
+//fc_actions_items_goods
+//WHERE EXISTS
+//(
+//SELECT
+//*
+//FROM
+//fc_actions_items_goods,
+//fc_actions_items
+//WHERE
+//fc_actions_items_goods.goods_id = fc_goods.goods_id
+//)
